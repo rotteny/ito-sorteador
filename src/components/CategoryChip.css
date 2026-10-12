@@ -1,0 +1,39 @@
+.chip {
+  min-height: var(--touch);
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: var(--border) solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 15px;
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+}
+
+.chip--category {
+  padding: 0 14px;
+}
+
+.chip--category[aria-pressed='true'] {
+  border-color: var(--chip-color);
+  background: var(--chip-color);
+  color: var(--chip-fg);
+}
+
+.chip__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--chip-color);
+}
+
+.chip--category[aria-pressed='true'] .chip__dot {
+  background: var(--chip-fg);
+}

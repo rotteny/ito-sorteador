@@ -1,0 +1,18 @@
+# Dependências e builds
+node_modules
+dist
+dev-dist
+
+# Ambiente (o exemplo é versionado)
+.env*
+!.env.example
+!.env.deploy.example
+
+# Temas do jogo original: texto com direitos da editora, nunca versionar.
+# Formato documentado em public/data/original.example.json.
+public/data/original.json
+
+# Diversos
+*.log
+.DS_Store
+*.local

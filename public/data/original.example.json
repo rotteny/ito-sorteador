@@ -1,0 +1,20 @@
+[
+  {
+    "id": "exemplo-001",
+    "texto": "Quão barulhento é este animal de estimação imaginário",
+    "min": "silêncio total",
+    "max": "acorda o prédio"
+  },
+  {
+    "id": "exemplo-002",
+    "texto": "Quanto você aguenta ficar numa fila de padaria",
+    "min": "desisto na hora",
+    "max": "espero o dia inteiro"
+  },
+  {
+    "id": "exemplo-003",
+    "texto": "Quão útil seria este objeto numa ilha deserta",
+    "min": "só ocupa espaço",
+    "max": "salva a minha vida"
+  }
+]

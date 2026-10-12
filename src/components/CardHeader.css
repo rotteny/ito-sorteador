@@ -1,0 +1,33 @@
+.card-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-header__back {
+  width: var(--touch);
+  height: var(--touch);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border) solid var(--color-ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.card-header__logo {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--color-logo);
+}
+
+.card-header__progress {
+  min-width: var(--touch);
+  text-align: right;
+  font-size: 13px;
+  color: var(--color-muted);
+}

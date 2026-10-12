@@ -1,0 +1,8 @@
+.wrap-notice {
+  flex: none;
+  margin: 0;
+  padding: 10px 14px;
+  border: var(--border) dashed var(--color-ink);
+  border-radius: var(--radius-notice);
+  font-size: 13px;
+}

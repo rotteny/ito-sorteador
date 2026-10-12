@@ -1,0 +1,20 @@
+.original-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+.original-intro__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.original-intro__text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-muted);
+}

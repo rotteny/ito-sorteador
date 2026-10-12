@@ -1,0 +1,23 @@
+.mode-toggle {
+  flex: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: var(--border) solid var(--color-ink);
+  border-radius: var(--radius-pill);
+}
+
+.mode-toggle__option {
+  min-height: var(--touch);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 15px;
+}
+
+.mode-toggle__option[aria-pressed='true'] {
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+}

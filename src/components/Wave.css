@@ -1,0 +1,7 @@
+.wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 390 / 96;
+  overflow: visible;
+}

@@ -1,0 +1,113 @@
+.theme-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px var(--gutter) 22px;
+  border: var(--border) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+  overflow: hidden;
+  animation: card-in 320ms var(--ease-out) both;
+}
+
+.theme-card__meta {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.theme-card__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.theme-card__dot {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.theme-card__round {
+  flex: none;
+  color: var(--color-muted);
+}
+
+/* Centraliza quando cabe; rola dentro da carta em telas muito pequenas. */
+.theme-card__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+}
+
+.theme-card__body > :first-child {
+  margin-top: auto;
+}
+
+.theme-card__body > :last-child {
+  margin-bottom: auto;
+}
+
+.theme-card__title {
+  --title-size: 34px;
+  margin: 0;
+  /* Abaixo de 390px de largura, encolhe junto com a tela. */
+  font-size: min(var(--title-size), calc(var(--title-size) * 100vw / 390px));
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.theme-card__title--32 { --title-size: 32px; }
+.theme-card__title--30 { --title-size: 30px; }
+.theme-card__title--28 { --title-size: 28px; }
+.theme-card__title--26 { --title-size: 26px; }
+.theme-card__title--24 { --title-size: 24px; }
+
+.theme-card__hint {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.theme-card__rule {
+  flex: 1;
+  height: 1px;
+  background: var(--color-line);
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-card {
+    animation: none;
+  }
+}

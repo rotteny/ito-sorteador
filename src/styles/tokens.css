@@ -1,0 +1,39 @@
+:root {
+  /* Cores (mockup Main.dc.html) */
+  --color-bg: #ffffff;
+  --color-ink: #2b2b2e;
+  --color-logo: #3d3d40;
+  --color-muted: #55555a;
+  --color-subtle: #6b6b70;
+  --color-line: #cfcfd4;
+  --color-on-ink: #ffffff;
+  --color-link: #1f6fc0;
+  --color-link-hover: #174f8a;
+  --color-focus: #1f6fc0;
+
+  /* Onda / régua de 6 cores */
+  --wave-1: #6b3fa0;
+  --wave-2: #2e86de;
+  --wave-3: #3ba55c;
+  --wave-4: #f2c531;
+  --wave-5: #f28c28;
+  --wave-6: #e8452c;
+
+  /* Tipografia */
+  --font-sans: 'Quicksand', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+
+  /* Bordas e raios */
+  --border: 1.5px;
+  --radius-pill: 999px;
+  --radius-card: 26px;
+  --radius-notice: 14px;
+
+  /* Layout */
+  --app-max-width: 430px;
+  --gutter: 22px;
+  --touch: 44px;
+
+  /* Movimento */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}

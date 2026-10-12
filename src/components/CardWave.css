@@ -1,0 +1,7 @@
+.card-wave {
+  display: block;
+  flex: none;
+  width: 100%;
+  height: 34px;
+  color: var(--accent);
+}

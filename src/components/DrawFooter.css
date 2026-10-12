@@ -1,0 +1,41 @@
+.draw-footer {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px var(--gutter) 24px;
+}
+
+.draw-footer__status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.draw-footer__count {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.draw-footer__reset {
+  min-height: var(--touch);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 14px;
+}
+
+.draw-footer__reset:disabled {
+  color: var(--color-subtle);
+  cursor: default;
+}
+
+.draw-footer .btn-pill:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

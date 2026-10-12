@@ -1,0 +1,18 @@
+.home {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Área do meio: rola quando os chips não cabem; o rodapé fica fixo. */
+.home__body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 26px var(--gutter) 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
