@@ -1,4 +1,5 @@
 import type { Category } from '../data/types'
+import { themeCount } from '../lib/copy'
 import { CategoryChip } from './CategoryChip'
 import './CategoryFilter.css'
 
@@ -18,7 +19,7 @@ export function CategoryFilter({ categories, selected, poolSize, onToggle, onSel
         <h2 id="category-filter-title" className="category-filter__title">
           Filtrar por tema
         </h2>
-        <span aria-live="polite">{poolSize} perguntas</span>
+        <span aria-live="polite">{themeCount(poolSize)}</span>
       </div>
       <div className="category-filter__chips">
         <button type="button" className="chip" aria-pressed={selected.length === 0} onClick={onSelectAll}>

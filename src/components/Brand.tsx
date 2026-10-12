@@ -12,7 +12,7 @@ export function Brand() {
         <span className="mono">Ligue seus pensamentos!</span>
         <span className="brand__rule" aria-hidden="true" />
       </div>
-      <p className="brand__subtitle mono">Sorteador de temas · 1 — 100</p>
+      <p className="brand__subtitle mono">Sorteador de temas</p>
     </header>
   )
 }

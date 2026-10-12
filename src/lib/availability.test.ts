@@ -46,14 +46,16 @@ describe('sanitize com e sem o baralho original', () => {
     expect(s.deck.mode).toBe('original')
     expect(s.deck.usedOrig).toEqual(['o-1', 'o-2'])
     expect(s.screen).toBe('card')
-    expect(s.current).toEqual({ mode: 'original', id: 'o-2' })
+    // Formato antigo (`{ mode, id }`) migra para uma carta atual por modo.
+    expect(s.current).toEqual({ original: 'o-2', extras: null })
   })
 
   it('modo salvo original + arquivo ausente: cai para extras e volta para a home', () => {
     const s = sanitize(saved, decksWithoutOriginal)
     expect(s.deck.mode).toBe('extras')
     expect(s.screen).toBe('home')
-    expect(s.current).toBeNull()
+    // A carta do original fica guardada para quando o arquivo voltar, como o progresso.
+    expect(s.current).toEqual({ original: 'o-2', extras: null })
     expect(s.deck.usedExtra).toEqual(['cinema-1'])
   })
 

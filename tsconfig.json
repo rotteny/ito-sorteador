@@ -30,6 +30,8 @@
   ],
   "exclude": [
     "src/**/*.test.ts",
-    "src/**/__fixtures__"
+    "src/**/*.test.tsx",
+    "src/**/__fixtures__",
+    "src/test"
   ]
 }

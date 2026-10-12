@@ -1,5 +1,6 @@
 import type { Decks } from '../data/types'
-import { availableMode, initialDeckState, type DeckState, type DrawnRef, type Mode } from './draw'
+import { noCurrent, visibleCurrent, type CurrentByMode } from './current'
+import { availableMode, initialDeckState, type DeckState, type Mode } from './draw'
 
 const KEY = 'ito-sorteador:v1'
 
@@ -8,10 +9,10 @@ export type Screen = 'home' | 'card'
 export interface PersistedState {
   deck: DeckState
   screen: Screen
-  current: DrawnRef | null
+  current: CurrentByMode
 }
 
-export const initialPersisted: PersistedState = { deck: initialDeckState, screen: 'home', current: null }
+export const initialPersisted: PersistedState = { deck: initialDeckState, screen: 'home', current: noCurrent }
 
 const isMode = (v: unknown): v is Mode => v === 'original' || v === 'extras'
 
@@ -49,12 +50,26 @@ export function sanitize(raw: unknown, decks: Decks): PersistedState {
   }
   if (deck.sel.length === catIds.size) deck.sel = []
 
-  const c = r.current as Record<string, unknown> | null | undefined
-  const validIds = c && isMode(c.mode) ? (c.mode === 'original' ? origIds : extraIds) : null
-  const current: DrawnRef | null =
-    c && isMode(c.mode) && typeof c.id === 'string' && validIds?.has(c.id) ? { mode: c.mode, id: c.id } : null
-  const screen: Screen = r.screen === 'card' && current ? 'card' : 'home'
+  const current = sanitizeCurrent(r.current, origIds, extraIds)
+  const screen: Screen = r.screen === 'card' && visibleCurrent(deck, current, decks) ? 'card' : 'home'
   return { deck, screen, current }
+}
+
+/**
+ * Aceita o formato atual (`{ original, extras }`) e o antigo (`{ mode, id }`, uma carta só).
+ * Sem o baralho original carregado, a carta dele é mantida como veio.
+ */
+function sanitizeCurrent(
+  raw: unknown,
+  origIds: ReadonlySet<string> | null,
+  extraIds: ReadonlySet<string>,
+): CurrentByMode {
+  if (typeof raw !== 'object' || raw === null) return noCurrent
+  const c = raw as Record<string, unknown>
+  const byMode: Record<string, unknown> = isMode(c.mode) ? { [c.mode]: c.id } : c
+  const pick = (v: unknown, valid: ReadonlySet<string> | null) =>
+    typeof v === 'string' && (valid === null || valid.has(v)) ? v : null
+  return { original: pick(byMode.original, origIds), extras: pick(byMode.extras, extraIds) }
 }
 
 export function loadState(decks: Decks): PersistedState {

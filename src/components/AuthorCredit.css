@@ -1,0 +1,31 @@
+.author-credit {
+  flex: none;
+  margin: 0;
+  padding: 4px var(--gutter) 8px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* #55555A sobre branco ≈ 7,4:1 (AA e AAA). Alvo de toque de 28px sem ocupar espaço visual. */
+.author-credit__link {
+  min-height: 28px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-muted);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+}
+
+.author-credit__link:hover {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.author-credit__link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 0;
+}

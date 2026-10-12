@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { Decks } from '../data/types'
 import { resolveCard, type CardView } from '../lib/card'
+import { resetWithCurrent, visibleCurrent, withCurrent } from '../lib/current'
 import {
   availableMode,
   drawTheme,
   isModeAvailable,
   poolProgress,
-  resetCurrentPool,
   toggleCategory as toggleSel,
   type Mode,
   type PoolProgress,
@@ -22,12 +22,15 @@ export interface Sorteio {
   progress: PoolProgress
   round: number
   wrapped: boolean
+  /** Carta atual do modo/filtro selecionados (null quando não há ou está escondida). */
   card: CardView | null
   setMode: (mode: Mode) => void
   toggleCategory: (id: string) => void
   selectAll: () => void
   draw: () => void
   reset: () => void
+  /** Volta para a carta atual sem sortear: mesma rodada, mesma contagem. */
+  resume: () => void
   goHome: () => void
 }
 
@@ -53,8 +56,10 @@ export function useSorteio(decks: Decks): Sorteio {
     if (!outcome) return
     navigator.vibrate?.(15)
     setWrapped(outcome.wrapped)
-    setState({ deck: outcome.state, current: outcome.drawn, screen: 'card' })
+    setState((s) => ({ deck: outcome.state, current: withCurrent(s.current, outcome.drawn), screen: 'card' }))
   }, [state.deck, decks])
+
+  const currentRef = visibleCurrent(state.deck, state.current, decks)
 
   return {
     screen: state.screen,
@@ -64,12 +69,17 @@ export function useSorteio(decks: Decks): Sorteio {
     progress: poolProgress(state.deck, decks),
     round: state.deck.round,
     wrapped,
-    card: state.current ? resolveCard(state.current, decks) : null,
+    card: currentRef ? resolveCard(currentRef, decks) : null,
     setMode: (mode) => setDeck((s) => ({ ...s.deck, mode: availableMode(mode, decks) })),
     toggleCategory: (id) => setDeck((s) => ({ ...s.deck, sel: toggleSel(s.deck.sel, id, allCategoryIds) })),
     selectAll: () => setDeck((s) => ({ ...s.deck, sel: [] })),
     draw,
-    reset: () => setDeck((s) => resetCurrentPool(s.deck, decks)),
+    reset: () => setState((s) => ({ ...s, ...resetWithCurrent(s.deck, s.current, decks) })),
+    resume: () => {
+      if (!currentRef) return
+      setWrapped(false)
+      setState((s) => ({ ...s, screen: 'card' }))
+    },
     goHome: () => {
       setWrapped(false)
       setState((s) => ({ ...s, screen: 'home' }))

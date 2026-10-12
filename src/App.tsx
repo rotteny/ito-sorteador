@@ -10,7 +10,8 @@ export function App() {
   return <div className="app" aria-busy={decks === null}>{decks && <Sorteador decks={decks} />}</div>
 }
 
-function Sorteador({ decks }: { decks: Decks }) {
+/** Sorteador com os baralhos já resolvidos (exportado para os testes de interface). */
+export function Sorteador({ decks }: { decks: Decks }) {
   const s = useSorteio(decks)
 
   return s.screen === 'card' && s.card ? (
@@ -22,10 +23,12 @@ function Sorteador({ decks }: { decks: Decks }) {
       categories={decks.categories}
       selected={s.sel}
       progress={s.progress}
+      currentCard={s.card}
       onModeChange={s.setMode}
       onToggleCategory={s.toggleCategory}
       onSelectAll={s.selectAll}
       onReset={s.reset}
+      onResume={s.resume}
       onDraw={s.draw}
     />
   )
