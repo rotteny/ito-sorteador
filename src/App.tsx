@@ -1,27 +1,21 @@
 import type { Decks } from './data/types'
-import { RotateNotice } from './components/RotateNotice'
 import { useDecks } from './hooks/useDecks'
 import { useSorteio } from './hooks/useSorteio'
 import { ConfirmDialog } from './components/ConfirmDialog'
 import { ShuffleOverlay } from './components/ShuffleOverlay'
 import { SoundToggle } from './components/SoundToggle'
 import { useDrawFlow } from './hooks/useDrawFlow'
-import { useOrientationLock } from './hooks/useOrientationLock'
 import { useSoundPref } from './hooks/useSoundPref'
 import { Card } from './screens/Card'
 import { Home } from './screens/Home'
 
 export function App() {
   const decks = useDecks()
-  useOrientationLock()
   // Instante do fetch do baralho original: só o fundo do app, sem conteúdo que depois mudaria.
   return (
-    <>
-      <div className="app" aria-busy={decks === null}>
-        {decks && <Sorteador decks={decks} />}
-      </div>
-      <RotateNotice />
-    </>
+    <div className="app" aria-busy={decks === null}>
+      {decks && <Sorteador decks={decks} />}
+    </div>
   )
 }
 
