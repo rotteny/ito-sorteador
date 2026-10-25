@@ -20,6 +20,18 @@ if (typeof window !== 'undefined' && typeof HTMLDialogElement !== 'undefined') {
     }
   }
 
+  // jsdom não tem matchMedia: simula "reduzir movimento" para o sorteio ser imediato nos testes.
+  window.matchMedia ??= ((query: string) => ({
+    matches: query.includes('prefers-reduced-motion'),
+    media: query,
+    addEventListener() {},
+    removeEventListener() {},
+    addListener() {},
+    removeListener() {},
+    onchange: null,
+    dispatchEvent: () => false,
+  })) as unknown as typeof window.matchMedia
+
   const { cleanup } = await import('@testing-library/react')
   afterEach(() => {
     cleanup()

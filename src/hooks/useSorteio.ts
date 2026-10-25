@@ -4,6 +4,7 @@ import { resolveCard, type CardView } from '../lib/card'
 import { resetWithCurrent, visibleCurrent, withCurrent } from '../lib/current'
 import {
   availableMode,
+  currentPool,
   drawTheme,
   isModeAvailable,
   poolProgress,
@@ -28,6 +29,8 @@ export interface Sorteio {
   toggleCategory: (id: string) => void
   selectAll: () => void
   draw: () => void
+  /** Textos do baralho atual (só para a animação de embaralhar; não revela o sorteado). */
+  poolTexts: () => string[]
   reset: () => void
   /** Volta para a carta atual sem sortear: mesma rodada, mesma contagem. */
   resume: () => void
@@ -74,6 +77,7 @@ export function useSorteio(decks: Decks): Sorteio {
     toggleCategory: (id) => setDeck((s) => ({ ...s.deck, sel: toggleSel(s.deck.sel, id, allCategoryIds) })),
     selectAll: () => setDeck((s) => ({ ...s.deck, sel: [] })),
     draw,
+    poolTexts: () => currentPool(state.deck, decks).map((t) => t.texto),
     reset: () => setState((s) => ({ ...s, ...resetWithCurrent(s.deck, s.current, decks) })),
     resume: () => {
       if (!currentRef) return

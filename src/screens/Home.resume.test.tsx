@@ -8,6 +8,11 @@ import { savedState, seedStorage } from '../test/seed'
 
 const resumeButton = () => screen.queryByRole('button', { name: /Ver tema atual/ })
 
+async function drawAndConfirm() {
+  await userEvent.click(screen.getByRole('button', { name: /^Sortear (tema|outro)$/ }))
+  await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Sortear' }))
+}
+
 describe('Home: "Ver tema atual"', () => {
   it('não aparece sem carta atual', () => {
     seedStorage({})
@@ -40,7 +45,7 @@ describe('Home: "Ver tema atual"', () => {
   it('aparece depois de um sorteio e continua valendo após recarregar', async () => {
     seedStorage({})
     const first = render(<Sorteador decks={decksFixture} />)
-    await userEvent.click(screen.getByRole('button', { name: 'Sortear tema' }))
+    await drawAndConfirm()
     await userEvent.click(screen.getByRole('button', { name: 'Trocar baralho' }))
     expect(resumeButton()).toBeTruthy()
 
@@ -92,7 +97,7 @@ describe('crédito do autor', () => {
     seedStorage({})
     render(<Sorteador decks={decksFixture} />)
     expect(screen.getByRole('link', { name: /feito por @rotteny/ })).toBeTruthy()
-    await userEvent.click(screen.getByRole('button', { name: 'Sortear tema' }))
+    await drawAndConfirm()
     expect(screen.queryByRole('link', { name: /feito por @rotteny/ })).toBeNull()
   })
 })

@@ -1,0 +1,17 @@
+.sound-toggle {
+  width: var(--touch);
+  height: var(--touch);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border) solid var(--color-ink);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.sound-toggle[aria-pressed='true'] {
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+}

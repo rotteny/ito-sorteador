@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { Category } from '../data/types'
 import type { CardView } from '../lib/card'
 import type { Mode, PoolProgress } from '../lib/draw'
@@ -19,6 +20,7 @@ interface HomeProps {
   progress: PoolProgress
   /** Carta atual do modo/filtro selecionados; null esconde o "Ver tema atual". */
   currentCard: CardView | null
+  soundToggle: ReactNode
   onModeChange: (mode: Mode) => void
   onToggleCategory: (id: string) => void
   onSelectAll: () => void
@@ -29,9 +31,10 @@ interface HomeProps {
 
 /** Tela inicial: escolha do baralho (quando há o original), filtro e botão de sortear fixo embaixo. */
 export function Home(props: HomeProps) {
-  const { mode, originalAvailable, categories, selected, progress, currentCard } = props
+  const { mode, originalAvailable, categories, selected, progress, currentCard, soundToggle } = props
   return (
     <main className="home">
+      <div className="home__sound">{soundToggle}</div>
       <Brand />
       <div className="home__body">
         {originalAvailable && <ModeToggle mode={mode} onChange={props.onModeChange} />}

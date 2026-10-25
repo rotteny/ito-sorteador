@@ -1,4 +1,5 @@
 .home {
+  position: relative;
   flex: 1;
   min-height: 0;
   display: flex;
@@ -15,4 +16,11 @@
   padding: 26px var(--gutter) 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+}
+
+.home__sound {
+  position: absolute;
+  top: 16px;
+  right: var(--gutter);
+  z-index: 1;
 }

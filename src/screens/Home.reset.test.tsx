@@ -7,7 +7,8 @@ import { decksFixture } from '../lib/__fixtures__/decks'
 import { savedState, seedStorage } from '../test/seed'
 
 const resetButton = () => screen.getByRole('button', { name: 'Recomeçar' })
-const dialog = () => screen.getByRole('dialog', { hidden: true }) as HTMLDialogElement
+const dialog = () =>
+  screen.getAllByRole('dialog', { hidden: true }).find((d) => d.textContent?.includes('Recomeçar o baralho?')) as HTMLDialogElement
 const savedRound = () => savedState().deck.round as number
 
 describe('Home: confirmação do "Recomeçar"', () => {

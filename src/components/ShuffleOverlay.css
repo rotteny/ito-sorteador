@@ -1,0 +1,47 @@
+.shuffle-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgb(43 43 46 / 0.45);
+}
+
+.shuffle-overlay__card {
+  width: min(340px, 100%);
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px var(--gutter);
+  border: var(--border) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-bg);
+  text-align: center;
+}
+
+.shuffle-overlay__label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-subtle);
+}
+
+.shuffle-overlay__text {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  animation: shuffle-flip 90ms var(--ease-out) both;
+}
+
+@keyframes shuffle-flip {
+  from {
+    opacity: 0.2;
+    transform: translateY(10px);
+  }
+}
